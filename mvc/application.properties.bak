@@ -1,0 +1,9 @@
+#Griffon Metadata file
+#Mon Sep 24 11:03:35 CDT 2012
+app.griffon.version=1.1.0
+app.name=mvc
+app.toolkit=swing
+app.version=0.1
+archetype.default=1.0.2
+plugins.eclipse-support=0.6.2
+plugins.swing=1.0.1
