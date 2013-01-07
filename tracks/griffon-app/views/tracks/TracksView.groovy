@@ -2,7 +2,22 @@ package tracks
 
 import javax.swing.JFileChooser
 
+import ca.odell.glazedlists.FilterList
+import ca.odell.glazedlists.TextFilterator
+import ca.odell.glazedlists.swing.TextComponentMatcherEditor
+
 fd = fileChooser(fileSelectionMode: JFileChooser.DIRECTORIES_ONLY)
+
+def tracksMatcherEditor = new TextComponentMatcherEditor(
+	textField(id: 'filterText'),
+	{baseList, track ->
+	   baseList << track.title
+	   baseList << track.artist
+	   baseList << track.album
+	} as TextFilterator
+ )
+
+def filteredTracks = new FilterList(model.tracks, tracksMatcherEditor)
 
 application(title: 'tracks',
 		preferredSize: [320, 240],
@@ -18,13 +33,16 @@ application(title: 'tracks',
 				button('Load',  actionPerformed: controller.load)
 				button('Choose',  actionPerformed: controller.choose)
 				button('Clear', actionPerformed: controller.&clear)
+				button('Filter', actionPerformed: controller.filter)
+//				textField(id: 'filterText', columns: 20)
+				widget(filterText, columns: 20)
 			}
 			scrollPane(constraints: CENTER) {
-
-				//	  label(text:'hello')
 				table {
 					tableFormat = defaultTableFormat(columnNames: ['Title', 'Artist', 'Album', 'File'])
-					eventTableModel(source: model.tracks, format: tableFormat)
+//					eventTableModel(source: model.tracks, format: tableFormat)
+//					installTableComparatorChooser(source: model.tracks)
+					eventTableModel(source: filteredTracks, format: tableFormat)
 					installTableComparatorChooser(source: model.tracks)
 				}
 			}

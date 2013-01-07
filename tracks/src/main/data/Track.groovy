@@ -23,10 +23,10 @@ class Track {
 		def tracks = []
 		Collection<File> files = FileUtils.listFiles(dir, ['mp3'] as String[], true);
 		for (File file : files){
-			System.out.println("file:" + file);
+//			println("file:" + file);
 			tracks << new Track(file)
 		}
-		println tracks
+//		println tracks
 		tracks
 	}
 

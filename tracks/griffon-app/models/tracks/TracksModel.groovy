@@ -1,15 +1,17 @@
 package tracks
 
-import ca.odell.glazedlists.EventList
 import ca.odell.glazedlists.BasicEventList
+import ca.odell.glazedlists.EventList
 import ca.odell.glazedlists.SortedList
-
-import data.Track;
+import data.Track
 
 class TracksModel {
    EventList<Track> tracks = new SortedList<Track>(new BasicEventList<Track>(),
      {a, b -> a.title <=> b.title} as Comparator<Track>)
-   
+ 
+//EventList tracks = new BasicEventList<Track>()
+//EventList tracks = new DebugList()
+	  
 //   TracksModel(){
 //	   println '--- TracksModel constructer'
 //	   tracks << new Track(title: 'title1', artist: 'artist1')

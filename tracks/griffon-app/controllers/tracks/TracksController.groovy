@@ -12,7 +12,9 @@ class TracksController {
 	def load = { evt = null ->
 		println 'load action'
 		def tracks = Track.getTracks(new File(/C:\Users\Glen\Downloads\SCI Fidelity Records 2012 Sampler\SCI Fidelity Records - SCI Fidelity Records 2012 Sampler/))
-		model.tracks.addAll(tracks)
+		edt {
+			model.tracks.addAll(tracks)
+		}
 	}
 
 	def choose = { evt = null ->
@@ -30,6 +32,10 @@ class TracksController {
 		execInsideUIAsync {
 			println 'clear action'
 		}
+	}
+	
+	def filter = { evt = null ->
+		println 'filter action'
 	}
 
 }
